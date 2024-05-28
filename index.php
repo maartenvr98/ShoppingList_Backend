@@ -46,47 +46,44 @@
 </head>
 <body>
 <section id="main">
-<div class="row">
-<div class="col-md-4 col-md-offset-4">
-<h2>Shopping List</h2> 
-<?
-	if (! isset($_SESSION['user_logged']) || $_SESSION['user_logged'] != 1) {
-?>
-	<form class="form-inline" action="<? echo $_SERVER["REQUEST_URI"]; ?>" method="post">
-		<?php echo $login_error; ?>
-		<h2><small>API Key</small></h2>
-		<fieldset>
-		<div class="row uniform">
-		<div>
-			<div class="form-group">
-				<div class="input-group">
-        	 <div class="input-group-addon"><i class="fa fa-key"></i></div>
-           <input type="password" class="form-control" name="password" placeholder="API Key" size="35">
-         </div>
-      </div>
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4">
+			<h2>Shopping List</h2> 
+			<?php if (! isset($_SESSION['user_logged']) || $_SESSION['user_logged'] != 1) : ?>
+				<form class="form-inline" action="<?= $_SERVER["REQUEST_URI"]; ?>" method="post">
+					<?= $login_error; ?>
+					<h2><small>API Key</small></h2>
+					<fieldset>
+						<div class="row uniform">
+							<div>
+								<div class="form-group">
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-key"></i>
+										</div>
+										<input type="password" class="form-control" name="password" placeholder="API Key" size="35">
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row uniform">
+							<div>
+							<button type="submit" class="btn btn-primary icon fa-sign-in" name="submit"> Login </button>
+							</div>
+						</div>
+					</fieldset>
+				</form>
+			<?php else : ?>
+				<button id="refresh" class="btn btn-primary icon fa-refresh">Refresh data</button> 
+				
+				<?php /* Add a category (well, will soon): <input type="text" size="15" id="addCategoryName" value=""/> */ ?>
+				<button id="checked" class="btn btn-primary icon fa-check">Remove checked</button> 
+				<div id="shopcategory"></div>
+				<br />
+			<?php endif; ?>
 		</div>
-		</div>
-		<div class="row uniform">
-		<div>
-			<button type="submit" class="btn btn-primary icon fa-sign-in" name="submit"> Login </button>
-		</div>
-		</div>
-		</fieldset>
-	</form>
-<?
-	} else {
-?>
-<button id="refresh" class="btn btn-primary icon fa-refresh">Refresh data</button> 
-<? /* Add a category (well, will soon): <input type="text" size="15" id="addCategoryName" value=""/> */ ?>
-<button id="checked" class="btn btn-primary icon fa-check">Remove checked</button> 
-<div id="shopcategory"></div>
-<br />
-<?
-	}
-?>
- 
-</div>
-</div>
+	</div>
 </section>
 </body>
 </html>
